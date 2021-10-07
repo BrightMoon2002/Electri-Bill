@@ -29,6 +29,7 @@ public class MainElectricBill {
             System.out.println("4. calculator Bill");
             System.out.println("5. Display list Guest");
             System.out.println("6. Display list Bill");
+            System.out.println("7. Search the Guest by Id");
             System.out.println("Enter your choice:");
             System.out.println("5. Exit");
             Scanner inputChoice = new Scanner(System.in);
@@ -52,6 +53,9 @@ public class MainElectricBill {
                 case 6:
                     manager.showAllMeterList();
                     break;
+                case 7:
+                    searGuestById(manager);
+                    break;
                 case 0:
                     System.exit(0);
                     break;
@@ -59,9 +63,17 @@ public class MainElectricBill {
         }
     }
 
+    private static void searGuestById(Manager manager) {
+        System.out.println("Enter the id of Guest:");
+        Scanner inputID = new Scanner(System.in);
+        String id = inputID.nextLine();
+        Guest guest = manager.searchGuestById(id);
+        System.out.println(guest);
+    }
+
     private static void checkBill(Manager manager) {
         String codeGuest = inputCodeGuest();
-        Guest guest = manager.searchGuest(codeGuest);
+        Guest guest = manager.searchGuestById(codeGuest);
         if (guest != null) {
             double money = calculatorBill(manager, guest);
             System.out.println(money);

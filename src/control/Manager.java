@@ -48,13 +48,28 @@ public class Manager {
         speedometerArrayList.set(index, newMeter);
    }
 
+   public Guest searchGuestById(String codeGuest) {
+       int index = -1;
+       Guest guest = null;
+       for (int i = 0; i < guestArrayList.size(); i++) {
+           if (codeGuest.equals(guestArrayList.get(i).getCodeMeter())) {
+               index = i;
+               guest = guestArrayList.get(index);
+               break;
+           }
+       }
+
+       return guest;
+   }
+
    public Guest searchGuest(String codeGuest) {
         int index = -1;
         Guest guest = null;
         for (int i = 0; i < speedometerArrayList.size(); i++) {
-            if (codeGuest.equals(speedometerArrayList.get(i).getGuest().getNumberHouse())) {
+            if (codeGuest.equals(speedometerArrayList.get(i).getGuest().getCodeMeter())) {
                 index = i;
                 guest = speedometerArrayList.get(index).getGuest();
+                break;
             }
         }
 
@@ -73,14 +88,6 @@ public class Manager {
             ) {
            System.out.println(speed);
        }
-   }
-
-   public double getMoneyByGuest(String codeGuest) {
-        double money = -1;
-        if (searchGuest(codeGuest) != null) {
-           money =  speedometerArrayList.get(speedometerArrayList.indexOf(searchGuest(codeGuest))).getRealMoney();
-        }
-       return money;
    }
 
 
